@@ -3,24 +3,32 @@
  * Project by John Carlo E. Cheng Roa
  *
  * A Project that demonstrates a basic OOP approach.
- * Version 1
- * September 17, 2025 - 5:42 AM
+ * Version 2
+ * September 17, 2025 - 5:52 AM
  */
 
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+
+    static String[] questions(){
         Scanner input = new Scanner(System.in);
 
+        String[] properties = new String[3];
         System.out.print("Enter the name of the item you want to add: ");
-        String itemName = input.nextLine();
+        properties[0] = input.nextLine();
         System.out.print("Enter the description of the item you want to add: ");
-        String itemDescription = input.nextLine();
+        properties[1] = input.nextLine();
         System.out.print("Enter the quantity of the item you want to add: ");
-        String itemPrice = input.nextLine();
+        properties[2] = input.nextLine();
 
-        Item item = new Item(itemName,itemDescription,Integer.parseInt(itemPrice));
+        return properties;
+    }
+
+    public static void main(String[] args) {
+        String[] itemProperties = questions();
+
+        Item item = new Item(itemProperties[0],itemProperties[1],Integer.parseInt(itemProperties[2]));
 
         System.out.println();
         System.out.println("Name of Item: " + item.getItemName());
