@@ -1,38 +1,102 @@
 /**
  * InventoryOOP
- * Project by John Carlo E. Cheng Roa
- *
  * A Project that demonstrates a basic OOP approach.
- * Version 2
- * September 17, 2025 - 5:52 AM
+ *
+ * Project by John Carlo E. Cheng Roa
+ * Version 3
+ * September 17, 2025 - 6:56 AM
  */
 
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-
-    static String[] questions(){
+    static String[] addItem(){
         Scanner input = new Scanner(System.in);
 
-        String[] properties = new String[3];
+        String[] properties = new String[7];
+        properties[0] = "0";
+
+        System.out.println("\nInventoryOOP");
         System.out.print("Enter the name of the item you want to add: ");
-        properties[0] = input.nextLine();
-        System.out.print("Enter the description of the item you want to add: ");
         properties[1] = input.nextLine();
-        System.out.print("Enter the quantity of the item you want to add: ");
+        System.out.print("Enter the description of the item you want to add: ");
         properties[2] = input.nextLine();
+        System.out.print("Enter the quantity of the item you want to add: ");
+        properties[3] = input.nextLine();
+
+        if (properties[2].toUpperCase(Locale.ROOT).equals("FOOD")){
+            properties[0] = "1";
+            System.out.print("Enter the calories of the food item you want to add: ");
+            properties[4] = input.nextLine();
+            System.out.print("Is your food item dangerous?\n[Y] - Yes | [N] - No\n>> ");
+            String isDangerous = input.nextLine();
+            if (isDangerous.toUpperCase(Locale.ROOT).equals("Y")) {
+                properties[5] = "Yes";
+            }
+            else if (isDangerous.toUpperCase(Locale.ROOT).equals("N")) {
+                properties[5] = "No";
+            }
+            else {
+                properties[5] = "";
+            }
+            System.out.print("Is your food item vegan?\n[Y] - Yes | [N] - No\n>> ");
+            String isVegan = input.nextLine();
+            if (isVegan.toUpperCase(Locale.ROOT).equals("Y")) {
+                properties[6] = "Yes";
+            }
+            else if (isVegan.toUpperCase(Locale.ROOT).equals("N")) {
+                properties[6] = "No";
+            }
+            else {
+                properties[6] = "";
+            }
+        }
 
         return properties;
     }
 
+    static void printResults(String[] itemProperties){
+        if (itemProperties[1].isEmpty()) {
+            System.out.println("Missing Required Fields: Item Name");
+            itemProperties[0] = "";
+        }
+        if (itemProperties[2].isEmpty()) {
+            System.out.println("Missing Required Fields: Item Description");
+            itemProperties[0] = "";
+        }
+        if (itemProperties[3].isEmpty()) {
+            System.out.println("Missing Required Fields: Item Quantity");
+            itemProperties[0] = "";
+        }
+        if (itemProperties[0].equals("0")) {
+            Item item = new Item(itemProperties[1],itemProperties[2],Integer.parseInt(itemProperties[3]));
+            System.out.println();
+            System.out.println("Name of Item: " + item.getItemName());
+            System.out.println("Description of Item: " + item.getItemDescription());
+            System.out.println("Quantity of Item: " + item.getItemQuantity());
+        }
+        else if (itemProperties[0].equals("1")) {
+            Food food = new Food(itemProperties[1],itemProperties[2],Integer.parseInt(itemProperties[3]),itemProperties[4],itemProperties[5],itemProperties[6]);
+            System.out.println();
+            System.out.println("Name of Food: " + food.getItemName());
+            System.out.println("Description of Food: " + food.getItemDescription());
+            System.out.println("Quantity of Food: " + food.getItemQuantity());
+            if(!Objects.equals(food.getCalories(), "")){
+                System.out.println("Calories of Food: " + food.getCalories());
+            }
+            if(!Objects.equals(food.getIsDangerous(), "")){
+                System.out.println("Is the Food Dangerous?: " + food.getIsDangerous());
+            }
+            if(!Objects.equals(food.getIsVegan(), "")){
+                System.out.println("Is the Food Vegan?: " + food.getIsVegan());
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        String[] itemProperties = questions();
-
-        Item item = new Item(itemProperties[0],itemProperties[1],Integer.parseInt(itemProperties[2]));
-
-        System.out.println();
-        System.out.println("Name of Item: " + item.getItemName());
-        System.out.println("Description of Item: " + item.getItemDescription());
-        System.out.println("Quantity of Item: " + item.getItemQuantity());
+            String[] itemProperties = addItem();
+            printResults(itemProperties);
     }
 }
