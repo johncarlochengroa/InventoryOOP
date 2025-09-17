@@ -3,10 +3,11 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 4
- * September 17, 2025 - 1:03 PM
+ * Version 5
+ * September 17, 2025 - 6:06 PM
  */
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
@@ -14,19 +15,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String[] item = new String[7];
+        String[] item;
         boolean alreadyPopulated = false;
+
+        item = SaveManager.loadFile();
+        if (!Objects.equals(item[0], "")) {
+            alreadyPopulated = true;
+        }
 
         System.out.println("\nInventoryOOP");
 
         label:
         while (true) {
-            if (alreadyPopulated) {
-                ItemManager.displayMenu(true);
-            }
-            else {
-                ItemManager.displayMenu(false);
-            }
+            ItemManager.displayMenu(alreadyPopulated);
             String userChoice = input.nextLine();
             if (alreadyPopulated) {
                 switch (userChoice) {
@@ -39,8 +40,10 @@ public class Main {
                         }
                         alreadyPopulated = false;
                         System.out.println("Item deleted successfully");
+                        SaveManager.saveFile(item);
                         break;
                     case "3":
+                        SaveManager.saveFile(item);
                         break label;
                     default:
                         break;
