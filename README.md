@@ -1,8 +1,11 @@
 # InventoryOOP
 **A simple, object-oriented command-line inventory system.** 📦
+
 This project is a basic console application designed to demonstrate fundamental principles of Object-Oriented Programming (OOP) in Java. It allows a user to manage a single item in an inventory, with special handling for "Food" items that have unique properties.
 
+
 <img width="2048" height="2048" alt="Gemini_Generated_Image_5uopvs5uopvs5uop" src="https://github.com/user-attachments/assets/8d505378-b608-4865-bfa0-e62cfab1c646" />
+
 
 ✨ **Features**
 * Object-Oriented Design: Utilizes Item and Food classes, showcasing inheritance and encapsulation. Food extends Item, inheriting its core properties while adding specific attributes like calories and dietary information.
