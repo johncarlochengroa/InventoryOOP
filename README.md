@@ -13,14 +13,8 @@ This project is a basic console application designed to demonstrate fundamental 
 To get this program up and running on your local machine, follow these steps:
 * Prerequisites: Ensure you have the Java Development Kit (JDK) installed.
 * Clone the Repository: Download or clone the project files to your computer.
-* Compile the Code: Open your terminal or command prompt, navigate to the project directory, and compile the Java files using the javac command.
-
-  javac *.java
-
-* Run the Program: Execute the Main class to start the application.
-
-  java Main
-
+* Compile the Code: Open your terminal or command prompt, navigate to the project directory, and compile the Java files using the javac command. "javac *.java"
+* Run the Program: Execute the Main class to start the application. "java Main"
 * Follow the Prompts: The application will guide you through the process of adding an item, viewing its details, or exiting the program.
 
 📂 **Project Structure**
