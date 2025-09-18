@@ -9,8 +9,8 @@ This project is a basic console application designed to demonstrate fundamental 
 * Dynamic Item Handling: Recognizes when a new item is "FOOD" and prompts for additional, relevant details.
 
 🚀 **How to Use**
-To get this program up and running on your local machine, follow these steps:
 
+To get this program up and running on your local machine, follow these steps:
 * Prerequisites: Ensure you have the Java Development Kit (JDK) installed.
 * Clone the Repository: Download or clone the project files to your computer.
 * Compile the Code: Open your terminal or command prompt, navigate to the project directory, and compile the Java files using the javac command.
