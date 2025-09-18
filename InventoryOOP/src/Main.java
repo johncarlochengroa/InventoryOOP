@@ -3,8 +3,8 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 5
- * September 17, 2025 - 6:06 PM
+ * Version 5 Patch 1
+ * September 19, 2025 - 12:40 AM
  */
 
 import java.util.Arrays;
@@ -32,12 +32,15 @@ public class Main {
             if (alreadyPopulated) {
                 switch (userChoice) {
                     case "1":
-                        ItemManager.printResults(item);
+                        if(item[0] != null) {
+                            ItemManager.displayProperties(item);
+                        }
+                        else{
+                            alreadyPopulated = false;
+                        }
                         break;
                     case "2":
-                        for (int i = 0; i < 7; i++) {
-                            item[i] = "";
-                        }
+                        Arrays.fill(item, "");
                         alreadyPopulated = false;
                         System.out.println("Item deleted successfully");
                         SaveManager.saveFile(item);

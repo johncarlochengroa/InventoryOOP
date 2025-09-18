@@ -12,7 +12,7 @@ public class SaveManager {
                 itemProperties[i] = myReader.nextLine();
                 i++;
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NullPointerException e) {
             return null;
         }
         return itemProperties;

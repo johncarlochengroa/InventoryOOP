@@ -49,7 +49,7 @@ public class ItemManager {
         return properties;
     }
 
-    static void printResults(String[] itemProperties){
+    static void displayProperties(String[] itemProperties){
         if (itemProperties[1].isEmpty()) {
             System.out.println("Missing Required Fields: Item Name");
             itemProperties[0] = "";
