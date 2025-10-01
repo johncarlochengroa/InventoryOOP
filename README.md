@@ -36,8 +36,8 @@ To get this program up and running on your local machine, follow these steps:
 👤 **Credits**
 
 * Author: John Carlo E. Cheng Roa
-* Version: 6
-* Last Updated: October 1, 2025
+* Version: 7
+* Last Updated: October 2, 2025
 
 **Note:** This is a demonstration project and is not intended for large-scale or production use.
 
