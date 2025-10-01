@@ -3,41 +3,40 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 5 Patch 2
- * October 1, 2025 - 3:14 PM
+ * Version 6
+ * October 1, 2025 - 5:25 PM
  */
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String[] item = SaveManager.loadFile();
-        boolean alreadyPopulated = item != null && item.length > 0 && Objects.equals(item[0], "");
+        Object item = null;
+        boolean alreadyPopulated;
 
         System.out.println("\nInventoryOOP");
 
         while (true) {
+            alreadyPopulated = SaveManager.fileExists();
+
+            if (alreadyPopulated && item == null) {
+                item = SaveManager.loadFile();
+            }
+
             ItemManager.displayMenu(alreadyPopulated);
-            String userChoice = input.nextLine().trim();
+            String userChoice = input.nextLine();
             if (alreadyPopulated) {
                 switch (userChoice) {
                     case "1":
-                        if(item[0] != null) {
-                            ItemManager.displayProperties(item);
-                        }
-                        else{
-                            alreadyPopulated = false;
-                        }
+                        ItemManager.displayProperties(item);
                         break;
                     case "2":
                         SaveManager.deleteFile();
-                        alreadyPopulated = false;
                         break;
                     case "3":
-                        SaveManager.saveFile(item);
+                        SaveManager.saveItem(item);
+                        input.close();
                         return;
                     default:
                         break;
@@ -46,8 +45,14 @@ public class Main {
             else {
                 switch (userChoice) {
                     case "1":
-                        item = ItemManager.addItem();
-                        alreadyPopulated = true;
+                        System.out.println("\nSelect Item Type: \n[1] - Item\n[2] - Food\n>> ");
+                        String itemType = input.nextLine();
+                        item = switch (itemType) {
+                            case "1" -> Item.addItem();
+                            case "2" -> Food.addItem();
+                            default -> item;
+                        };
+                        SaveManager.saveItem(item);
                         break;
                     case "2":
                         input.close();
