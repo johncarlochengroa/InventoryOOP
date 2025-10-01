@@ -41,4 +41,4 @@ To get this program up and running on your local machine, follow these steps:
 
 **Note:** This is a demonstration project and is not intended for large-scale or production use.
 
-**AI Note:** This README is generated using Google Gemini.
+**AI Note:** This README is created with the help of Google Gemini and ChatGPT.
