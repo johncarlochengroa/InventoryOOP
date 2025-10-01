@@ -10,6 +10,7 @@ This project is a basic console application designed to demonstrate fundamental 
 
 
 ✨ **Features**
+
 * Object-Oriented Design: Utilizes Item and Food classes, showcasing inheritance and encapsulation. Food extends Item, inheriting its core properties while adding specific attributes like calories and dietary information.
 * User-Friendly Interface: Interacts with the user via the command line to add, view, and delete inventory items.
 * Data Persistence: Automatically saves the current inventory item to a save.txt file, ensuring your data is not lost between sessions.
@@ -18,13 +19,14 @@ This project is a basic console application designed to demonstrate fundamental 
 🚀 **How to Use**
 
 To get this program up and running on your local machine, follow these steps:
-* Prerequisites: Ensure you have the Java Development Kit (JDK) installed.
-* Clone the Repository: Download or clone the project files to your computer.
-* Compile the Code: Open your terminal or command prompt, navigate to the project directory, and compile the Java files using the javac command. "javac *.java"
-* Run the Program: Execute the Main class to start the application. "java Main"
+* Prerequisites: Ensure you have the Java Development Kit (JDK) installed, as well as IntelliJ IDEA.
+* Clone the Repository: Download or clone the project files to your computer using Github Desktop
+* Target Repository: In Github Desktop, clone this repository to your IntelliJ IDEA projects folder.
+* Run the Program: In IntelliJ IDEA, open the Main.java file, then run by clicking the play icon or "Shift + F10".
 * Follow the Prompts: The application will guide you through the process of adding an item, viewing its details, or exiting the program.
 
 📂 **Project Structure**
+
 * Food.java: Defines the Food class, which inherits from Item and includes additional properties for food-specific data.
 * Item.java: The parent class for all inventory items, containing fundamental properties like name, description, and quantity.
 * ItemManager.java: Contains static methods for handling user input and managing item-related logic.
@@ -32,9 +34,11 @@ To get this program up and running on your local machine, follow these steps:
 * SaveManager.java: Handles the reading from and writing to the save.txt file for data persistence.
 
 👤 **Credits**
+
 * Author: John Carlo E. Cheng Roa
-* Version: 5
-* Last Updated: September 17, 2025
+* Version: 5 Patch 2
+* Last Updated: October 1, 2025
 
 **Note:** This is a demonstration project and is not intended for large-scale or production use.
+
 **AI Note:** This README is generated using Google Gemini.
