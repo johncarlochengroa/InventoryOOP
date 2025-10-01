@@ -3,32 +3,25 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 5 Patch 1
- * September 19, 2025 - 12:40 AM
+ * Version 5 Patch 2
+ * October 1, 2025 - 3:14 PM
  */
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String[] item;
-        boolean alreadyPopulated = false;
-
-        item = SaveManager.loadFile();
-        if (!Objects.equals(item[0], "")) {
-            alreadyPopulated = true;
-        }
+        String[] item = SaveManager.loadFile();
+        boolean alreadyPopulated = item != null && item.length > 0 && Objects.equals(item[0], "");
 
         System.out.println("\nInventoryOOP");
 
-        label:
         while (true) {
             ItemManager.displayMenu(alreadyPopulated);
-            String userChoice = input.nextLine();
+            String userChoice = input.nextLine().trim();
             if (alreadyPopulated) {
                 switch (userChoice) {
                     case "1":
@@ -40,14 +33,12 @@ public class Main {
                         }
                         break;
                     case "2":
-                        Arrays.fill(item, "");
+                        SaveManager.deleteFile();
                         alreadyPopulated = false;
-                        System.out.println("Item deleted successfully");
-                        SaveManager.saveFile(item);
                         break;
                     case "3":
                         SaveManager.saveFile(item);
-                        break label;
+                        return;
                     default:
                         break;
                 }
@@ -59,7 +50,8 @@ public class Main {
                         alreadyPopulated = true;
                         break;
                     case "2":
-                        break label;
+                        input.close();
+                        return;
                     default:
                         break;
                 }

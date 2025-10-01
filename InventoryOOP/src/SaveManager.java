@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class SaveManager {
@@ -26,7 +29,18 @@ public class SaveManager {
                 writer.write(line + System.lineSeparator());
             }
         } catch (IOException e) {
-            System.out.println("Error: An error occurred while writing to the file.");
+            System.out.println("Error: An error occurred while saving the item.");
+        }
+    }
+
+    public static void deleteFile() {
+        File file = new File("save.txt");
+        Path filePath = Paths.get("save.txt");
+        try {
+            Files.deleteIfExists(filePath);
+            System.out.println("Item deleted successfully.");
+        } catch (IOException e) {
+            System.err.println("Error: An error occurred while deleting the item.");
         }
     }
 }
