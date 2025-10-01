@@ -3,8 +3,8 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 6
- * October 1, 2025 - 5:25 PM
+ * Version 7
+ * October 2, 2025 - 12:37 AM
  */
 
 import java.util.Scanner;
@@ -45,7 +45,7 @@ public class Main {
             else {
                 switch (userChoice) {
                     case "1":
-                        System.out.println("\nSelect Item Type: \n[1] - Item\n[2] - Food\n>> ");
+                        System.out.print("\nSelect Item Type: \n[1] - Item\n[2] - Food\n>> ");
                         String itemType = input.nextLine();
                         item = switch (itemType) {
                             case "1" -> Item.addItem();

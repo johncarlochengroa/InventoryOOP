@@ -6,7 +6,8 @@ import java.util.*;
 import java.util.List;
 
 public class SaveManager {
-    private static final String FILE_PATH = "C:\\Users\\John Carlo\\IdeaProjects\\InventoryOOP\\InventoryItems\\save.txt";
+    private static final String FILE_PATH = "C:\\Users\\John Carlo\\IdeaProjects\\InventoryOOP\\InventoryItems\\items.csv";
+    private static final String CSV_DELIMITER = ",";
 
     public static boolean fileExists() {
         File file = new File(FILE_PATH);
@@ -20,31 +21,49 @@ public class SaveManager {
             return items;
         }
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            return Collections.singletonList(ois.readObject());
-        } catch (EOFException e) {
-            return null;
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Save file not found at " + FILE_PATH);
-            return null;
-        } catch (IOException e) {
-            System.err.println("Error: An I/O error occurred while loading object.");
-            return null;
-        } catch (ClassNotFoundException e) {
-            System.err.println("Error: A stored class could not be found during deserialization.");
-            return null;
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                if (row.trim().isEmpty()) continue;
+
+                String[] parts = row.split(CSV_DELIMITER);
+                if (parts.length == 0) continue;
+
+                String itemType = parts[0];
+
+                Object newItem = null;
+
+                if ("Food".equals(itemType)) {
+                    newItem = Food.fromCsvParts(Arrays.toString(parts), CSV_DELIMITER);
+                }
+                else if ("Item".equals(itemType)) {
+                    newItem = Item.fromCsvParts(Arrays.toString(parts), CSV_DELIMITER);
+                }
+
+                if (newItem != null) {
+                    items.add(newItem);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error: An error occurred while loading the item from CSV");
         }
+
+        return items;
     }
 
     public static void saveItem(Object... items) {
         File file = new File(FILE_PATH);
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(file, false))) { // false for overwrite
             for (Object obj : items) {
-                oos.writeObject(obj);
+                if (obj instanceof Item item) {
+                    writer.println(item.toCsvRow(CSV_DELIMITER));
+                } else if (obj instanceof Food food) {
+                    writer.println(food.toCsvRow(CSV_DELIMITER));
+                }
             }
         } catch (IOException e) {
-            System.err.println("Error: An error occurred while saving the item.");
+            System.err.println("Error: An error occurred while saving the item to CSV");
         }
     }
 

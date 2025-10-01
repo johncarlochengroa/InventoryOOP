@@ -3,7 +3,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.io.Serializable;
 
-public class Food extends Item implements Serializable {
+public class Food extends Item implements Serializable, ItemInterface {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,6 @@ public class Food extends Item implements Serializable {
     public static Food addItem() {
         Scanner foodInput = new Scanner(System.in);
 
-        System.out.println("\nInventoryOOP: Add New Item");
         System.out.print("Enter the name of the item to add: ");
         String tempName = foodInput.nextLine();
         System.out.print("Enter the description of the item to add: ");
@@ -76,5 +75,26 @@ public class Food extends Item implements Serializable {
         }
 
         return new Food(tempName, tempDesc, Integer.parseInt(tempQuantity), tempCal, tempDanger, tempVegan);
+    }
+
+    public String toCsvRow(String delimiter) {
+        return "Food" + delimiter + getItemName() + delimiter + getItemDescription() + delimiter + getItemQuantity() + delimiter + getCalories() + delimiter + getIsDangerous() + delimiter + getIsVegan();
+    }
+
+    public static Food fromCsvParts(String csvRow, String delimiter) {
+        try {
+            String[] parts = csvRow.split(delimiter);
+
+            String name = parts[0];
+            String desc = parts[1];
+            int quantity = Integer.parseInt(parts[2]);
+            String calories = parts[3];
+            String isDangerous = parts[4];
+            String isVegan = parts[5];
+
+            return new Food(name, desc, quantity, calories, isDangerous, isVegan);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
