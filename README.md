@@ -33,12 +33,18 @@ To get this program up and running on your local machine, follow these steps:
 * Main.java: The main class that drives the application loop and calls the necessary methods.
 * SaveManager.java: Handles the reading from and writing to the save.txt file for data persistence.
 
+📝 **Changelog**
+
+Version 7 Patch 1 (October 2, 2025)
+
+* Fixed issue for displaying items, Food still not displaying (will fix in the next patch)
+* Added new error messages for SaveManager
+* Optimized Code
+
 👤 **Credits**
 
 * Author: John Carlo E. Cheng Roa
-* Version: 7
-* Last Updated: October 2, 2025
-
+  
 **Note:** This is a demonstration project and is not intended for large-scale or production use.
 
 **AI Note:** This README is created with the help of Google Gemini and ChatGPT.
