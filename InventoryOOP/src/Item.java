@@ -61,9 +61,9 @@ public class Item implements Serializable, ItemInterface {
         try {
             String[] parts = csvRow.split(delimiter);
 
-            String name = parts[0];
-            String desc = parts[1];
-            int quantity = Integer.parseInt(parts[2]);
+            String name = parts[1];
+            String desc = parts[2];
+            int quantity = Integer.parseInt(parts[3]);
 
             return new Item(name, desc, quantity);
         } catch (Exception e) {

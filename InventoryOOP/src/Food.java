@@ -85,12 +85,12 @@ public class Food extends Item implements Serializable, ItemInterface {
         try {
             String[] parts = csvRow.split(delimiter);
 
-            String name = parts[0];
-            String desc = parts[1];
-            int quantity = Integer.parseInt(parts[2]);
-            String calories = parts[3];
-            String isDangerous = parts[4];
-            String isVegan = parts[5];
+            String name = parts[1];
+            String desc = parts[2];
+            int quantity = Integer.parseInt(parts[3]);
+            String calories = parts[4];
+            String isDangerous = parts[5];
+            String isVegan = parts[6];
 
             return new Food(name, desc, quantity, calories, isDangerous, isVegan);
         } catch (Exception e) {

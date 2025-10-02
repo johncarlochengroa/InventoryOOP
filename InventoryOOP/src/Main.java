@@ -3,16 +3,19 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 7
- * October 2, 2025 - 12:37 AM
+ * Version 7 Patch 1
+ * October 2, 2025 - 11:16 AM
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Object item = null;
+        List<Object> items = new ArrayList<>();
+        Object currentItem = null;
         boolean alreadyPopulated;
 
         System.out.println("\nInventoryOOP");
@@ -20,8 +23,11 @@ public class Main {
         while (true) {
             alreadyPopulated = SaveManager.fileExists();
 
-            if (alreadyPopulated && item == null) {
-                item = SaveManager.loadFile();
+            if (alreadyPopulated && items.isEmpty()) {
+                items = SaveManager.loadFile();
+                if(!items.isEmpty()) {
+                    currentItem = items.getFirst();
+                }
             }
 
             ItemManager.displayMenu(alreadyPopulated);
@@ -29,13 +35,19 @@ public class Main {
             if (alreadyPopulated) {
                 switch (userChoice) {
                     case "1":
-                        ItemManager.displayProperties(item);
+                        if (currentItem == null) {
+                            System.out.println("No item available to identify.");
+                        } else {
+                            ItemManager.displayProperties(currentItem);
+                        }
                         break;
                     case "2":
                         SaveManager.deleteFile();
                         break;
                     case "3":
-                        SaveManager.saveItem(item);
+                        if (currentItem != null) {
+                            SaveManager.saveItem(currentItem);
+                        }
                         input.close();
                         return;
                     default:
@@ -47,12 +59,14 @@ public class Main {
                     case "1":
                         System.out.print("\nSelect Item Type: \n[1] - Item\n[2] - Food\n>> ");
                         String itemType = input.nextLine();
-                        item = switch (itemType) {
+                        currentItem = switch (itemType) {
                             case "1" -> Item.addItem();
                             case "2" -> Food.addItem();
-                            default -> item;
+                            default -> currentItem;
                         };
-                        SaveManager.saveItem(item);
+                        if (currentItem != null) {
+                            SaveManager.saveItem(currentItem);
+                        }
                         break;
                     case "2":
                         input.close();
