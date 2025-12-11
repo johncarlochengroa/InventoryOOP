@@ -1,7 +1,7 @@
 # InventoryOOP
 **A simple, object-oriented command-line inventory system.** 📦
 
-This project is a basic console application designed to demonstrate fundamental principles of Object-Oriented Programming (OOP) in Java. It allows a user to manage a single item in an inventory, with special handling for "Food" items that have unique properties.
+This project is a basic console application designed to demonstrate fundamental principles of Object-Oriented Programming (OOP) in Java. It allows a user to manage a 4 slot inventory.
 
 
 <p align="center">
@@ -11,10 +11,9 @@ This project is a basic console application designed to demonstrate fundamental 
 
 ✨ **Features**
 
-* Object-Oriented Design: Utilizes Item and Food classes, showcasing inheritance and encapsulation. Food extends Item, inheriting its core properties while adding specific attributes like calories and dietary information.
+* Object-Oriented Design: Utilizes ItemManager class that adapts based on the type of items added, with Food, Tools, and Weapons Class showcasing inheritance and encapsulation. Food, Tools, and Weapons extends Item.
 * User-Friendly Interface: Interacts with the user via the command line to add, view, and delete inventory items.
-* Data Persistence: Automatically saves the current inventory item to a save.txt file, ensuring your data is not lost between sessions.
-* Dynamic Item Handling: Recognizes when a new item is "FOOD" and prompts for additional, relevant details.
+* Dynamic Item Handling: Adapts to different object types depending on the types of the input item.
 
 🚀 **How to Use**
 
@@ -28,18 +27,18 @@ To get this program up and running on your local machine, follow these steps:
 📂 **Project Structure**
 
 * Food.java: Defines the Food class, which inherits from Item and includes additional properties for food-specific data.
-* Item.java: The parent class for all inventory items, containing fundamental properties like name, description, and quantity.
+* Tool.java: Defines the Tool class, which inherits from Item and includes additional properties for tool-specific data.
+* Weapon.java: Defines the Weapon class, which inherits from Item and includes additional properties for weapon-specific data.
+* Item.java: The parent class for all inventory items, containing fundamental properties like name and quantity.
 * ItemManager.java: Contains static methods for handling user input and managing item-related logic.
 * Main.java: The main class that drives the application loop and calls the necessary methods.
-* SaveManager.java: Handles the reading from and writing to the save.txt file for data persistence.
 
 📝 **Changelog**
 
-Version 7 Patch 1 (October 2, 2025)
+Version 8 Milestone 1 (December 12, 2025)
 
-* Fixed issue for displaying items, Food still not displaying (will fix in the next patch)
-* Added new error messages for SaveManager
-* Optimized Code
+* Rewrote the entire program
+* Added everything before except saving
 
 👤 **Credits**
 
