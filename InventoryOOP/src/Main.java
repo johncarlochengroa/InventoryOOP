@@ -3,8 +3,8 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 8 Milestone 1
- * December 12, 2025 - 2:34 AM
+ * Version 8 Milestone 2
+ * December 12, 2025 - 2:02 PM
  */
 
 import java.util.Scanner;
@@ -34,20 +34,88 @@ public class Main {
 
             while (true) {
                 dm.printInventory(slotIndex);
-                System.out.print("(1) - Add Item\n(2) - Display Item\n(3) - Return\n>> ");
-                slotActionIndex = input.nextInt();
-
-                if (slotActionIndex == 3) {
-                    slotIndex = 0;
-                    break;
-                }
-
-                switch (slotActionIndex) {
-                    case 1:
-                        itemList[slotIndex - 1] = im.addItem();
+                if (itemList[slotIndex - 1] == null) {
+                    System.out.print("(1) - Add Item\n(2) - Return\n>> ");
+                    slotActionIndex = input.nextInt();
+                    if (slotActionIndex == 2) {
+                        slotIndex = 0;
                         break;
-                    case 2:
-                        im.displayItem(itemList[slotIndex - 1]);
+                    }
+                    else if (slotActionIndex == 1) {
+                        itemList[slotIndex - 1] = im.addItem();
+                    }
+                }
+                else if (itemList[slotIndex - 1] instanceof Food) {
+                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
+                    System.out.print("(1) - Replace Item\n(2) - Display Item\n(3) - Cook Food\n(4) - Eat Food\n(5) - Return\n>> ");
+                    slotActionIndex = input.nextInt();
+                    if (slotActionIndex == 5) {
+                        slotIndex = 0;
+                        break;
+                    }
+                    switch (slotActionIndex) {
+                        case 1:
+                            itemList[slotIndex - 1] = null;
+                            itemList[slotIndex - 1] = im.addItem();
+                            break;
+                        case 2:
+                            im.displayItem(itemList[slotIndex - 1]);
+                            break;
+                        case 3:
+                            im.cookFood(itemList[slotIndex - 1]);
+                            break;
+                        case 4:
+                            itemList[slotIndex - 1] = null;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (itemList[slotIndex - 1] instanceof Tool) {
+                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
+                    System.out.print("(1) - Add Item\n(2) - Display Item\n(3) - Use Tool\n(4) - Return\n>> ");
+                    slotActionIndex = input.nextInt();
+                    if (slotActionIndex == 4) {
+                        slotIndex = 0;
+                        break;
+                    }
+                    switch (slotActionIndex) {
+                        case 1:
+                            itemList[slotIndex - 1] = null;
+                            itemList[slotIndex - 1] = im.addItem();
+                            break;
+                        case 2:
+                            im.displayItem(itemList[slotIndex - 1]);
+                            break;
+                        case 3:
+                            im.useTool(itemList[slotIndex - 1]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (itemList[slotIndex - 1] instanceof Weapon) {
+                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
+                    System.out.print("(1) - Add Item\n(2) - Display Item\n(3) - Use Tool\n(4) - Return\n>> ");
+                    slotActionIndex = input.nextInt();
+                    if (slotActionIndex == 4) {
+                        slotIndex = 0;
+                        break;
+                    }
+                    switch (slotActionIndex) {
+                        case 1:
+                            itemList[slotIndex - 1] = null;
+                            itemList[slotIndex - 1] = im.addItem();
+                            break;
+                        case 2:
+                            im.displayItem(itemList[slotIndex - 1]);
+                            break;
+                        case 3:
+                            im.useTool(itemList[slotIndex - 1]);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

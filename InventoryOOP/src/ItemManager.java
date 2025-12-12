@@ -1,5 +1,6 @@
 import ItemTypes.*;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ItemManager {
@@ -94,5 +95,56 @@ public class ItemManager {
             System.out.println("Durability: " + weapon.getDurability() + " / 255");
             System.out.println("Damage: " + weapon.getDamage() + " / 255");
         }
+    }
+
+    public String getNameItem(Object item) {
+        if (item instanceof Food) {
+            Food food = (Food) item;
+            return food.getName();
+        }
+        else if (item instanceof Tool) {
+            Tool tool = (Tool) item;
+            return tool.getName();
+        }
+        else if (item instanceof Weapon) {
+            Weapon weapon = (Weapon) item;
+            return weapon.getName();
+        }
+        return null;
+    }
+
+    public Object cookFood(Object item) {
+        Food food = null;
+        if (item instanceof Food) {
+            food = (Food) item;
+            food.setCooked(true);
+        }
+        return food;
+    }
+
+    public Object useTool(Object item) {
+        Random rand = new Random();
+        int useRandom = rand.nextInt(1, 10);
+
+        if (item instanceof Tool) {
+            Tool tool = (Tool) item;
+            int newDurability = tool.getDurability() - useRandom;
+            if (newDurability < 0) {
+                newDurability = 0;
+            }
+            tool.setDurability(newDurability);
+            return tool;
+        }
+
+        if (item instanceof Weapon) {
+            Weapon weapon = (Weapon) item;
+            int newDurability = weapon.getDurability() - useRandom;
+            if (newDurability < 0) {
+                newDurability = 0;
+            }
+            weapon.setDurability(newDurability);
+            return weapon;
+        }
+        return item;
     }
 }
