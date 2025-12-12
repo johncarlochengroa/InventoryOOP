@@ -3,8 +3,8 @@
  * A Project that demonstrates a basic OOP approach.
  *
  * Project by John Carlo E. Cheng Roa
- * Version 8 Milestone 2
- * December 12, 2025 - 2:02 PM
+ * Version 8 Milestone 3
+ * December 12, 2025 - 7:34 PM
  */
 
 import java.util.Scanner;
@@ -21,11 +21,10 @@ public class Main {
         int slotActionIndex = 0;
         Object[] itemList = new Object[3];
 
-        System.out.println("\nInventoryOOP\n");
-
         while (true) {
+            System.out.println("\nInventoryOOP\n");
             dm.printInventory(slotIndex);
-            System.out.print("(1-4) - Access Item Slot\n(5) - Exit\n>> ");
+            dm.printOptions(-1,null);
             slotIndex = input.nextInt();
 
             if (slotIndex == 5) {
@@ -35,7 +34,7 @@ public class Main {
             while (true) {
                 dm.printInventory(slotIndex);
                 if (itemList[slotIndex - 1] == null) {
-                    System.out.print("(1) - Add Item\n(2) - Return\n>> ");
+                    dm.printOptions(0,null);
                     slotActionIndex = input.nextInt();
                     if (slotActionIndex == 2) {
                         slotIndex = 0;
@@ -46,8 +45,7 @@ public class Main {
                     }
                 }
                 else if (itemList[slotIndex - 1] instanceof Food) {
-                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
-                    System.out.print("(1) - Replace Item\n(2) - Display Item\n(3) - Cook Food\n(4) - Eat Food\n(5) - Return\n>> ");
+                    dm.printOptions(1,im.getNameItem(itemList[slotIndex - 1]));
                     slotActionIndex = input.nextInt();
                     if (slotActionIndex == 5) {
                         slotIndex = 0;
@@ -72,8 +70,7 @@ public class Main {
                     }
                 }
                 else if (itemList[slotIndex - 1] instanceof Tool) {
-                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
-                    System.out.print("(1) - Add Item\n(2) - Display Item\n(3) - Use Tool\n(4) - Return\n>> ");
+                    dm.printOptions(2,im.getNameItem(itemList[slotIndex - 1]));
                     slotActionIndex = input.nextInt();
                     if (slotActionIndex == 4) {
                         slotIndex = 0;
@@ -95,8 +92,7 @@ public class Main {
                     }
                 }
                 else if (itemList[slotIndex - 1] instanceof Weapon) {
-                    System.out.println(">> " + im.getNameItem(itemList[slotIndex - 1]) + " <<");
-                    System.out.print("(1) - Add Item\n(2) - Display Item\n(3) - Use Tool\n(4) - Return\n>> ");
+                    dm.printOptions(3,im.getNameItem(itemList[slotIndex - 1]));
                     slotActionIndex = input.nextInt();
                     if (slotActionIndex == 4) {
                         slotIndex = 0;
